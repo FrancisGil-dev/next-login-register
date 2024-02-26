@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from 'react';
 import Link from 'next/link';
+import axios from 'axios';
 
 export default function Register() {
   // data
@@ -19,6 +20,7 @@ export default function Register() {
         setError('')
       },2000) 
     }
+    
     
 
   };
