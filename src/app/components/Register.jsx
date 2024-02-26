@@ -7,13 +7,19 @@ export default function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('')
 
   const onRegister = (e) => {
     e.preventDefault();
-
-    console.log(`username: ${username}`);
-    console.log(`email: ${email}`);
-    console.log(`password: ${password}`);
+    if (!username || !email || !password) {
+      setTimeout(() => {
+        setError("Please complete all fields")
+      }, 300);
+      setTimeout(() => {
+        setError('')
+      },2000) 
+    }
+    
 
   };
 
@@ -24,7 +30,7 @@ export default function Register() {
         <input
           type='text'
           placeholder='Username'
-          required
+          
           autoComplete='off'
           className='outline-none border p-1 border-black'
           value={username}
@@ -33,7 +39,7 @@ export default function Register() {
         <input
           type='email' // Use type="email" for better validation
           placeholder='Email'
-          required
+          
           autoComplete='off'
           className='outline-none border p-1 border-black'
           value={email}
@@ -42,12 +48,15 @@ export default function Register() {
         <input
           type='password'
           placeholder='Password'
-          required
+          
           autoComplete='off'
           className='outline-none border p-1 border-black'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error && (
+          <span className='bg-red-500 text-white p-2'>{error}</span>
+        )}
         <button
           type='submit'
           className='bg-blue-500 hover:transition-all hover:bg-blue-600 p-2 text-white'
